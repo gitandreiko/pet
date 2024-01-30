@@ -1,31 +1,19 @@
-import type { Config } from 'jest';
+import path from 'path';
 
-const config: Config = {
-
+export default {
     clearMocks: true,
     testEnvironment: 'jsdom',
-    coveragePathIgnorePatterns: [
-        '\\\\node_modules\\\\',
-    ],
-    moduleFileExtensions: [
-        'js',
-        'jsx',
-        'ts',
-        'tsx',
-        'json',
-        'node',
-    ],
-    moduleDirectories: [
-        'node_modules',
-    ],
+    coveragePathIgnorePatterns: ['\\\\node_modules\\\\'],
+    moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
+    moduleDirectories: ['node_modules'],
+    modulePaths: ['<rootDir>src'],
     testMatch: [
         '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)',
     ],
-    transform: {
-        '^.+\\.ts?$': 'ts-jest',
-    },
-    transformIgnorePatterns: ['<rootDir>/node_modules/'],
     rootDir: '../../',
+    setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
+    moduleNameMapper: {
+        '\\.s?css$': 'identity-obj-proxy',
+        '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+    },
 };
-
-export default config;
