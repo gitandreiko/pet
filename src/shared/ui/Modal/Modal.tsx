@@ -1,16 +1,18 @@
 import { FC } from 'react';
 
-import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './Modal.module.scss';
+import cls from 'Modal.module.scss';
+import { classNames } from '../../lib/classNames/classNames';
 
 interface ModalProps {
   className?: string;
 }
 
-export const Modal: FC<ModalProps> = ({
-    className,
-}: ModalProps) => (
-    <div className={classNames(cls.modal, {}, [className])}>
-        Modal Component
-    </div>
-);
+export const Modal: FC<ModalProps> = (props) => {
+    const { className } = props;
+
+    return (
+        <div className={classNames(cls.modal, {}, [className])}>
+            Modal Component
+        </div>
+    );
+};
